@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.text.DecimalFormat;
 
 
 /**
@@ -9,52 +8,60 @@ public class Lab8 {
 
     public static void main(String[] args) {
 
-        // 1. display welcome message
-        System.out.println("Welcome to Batting Average Calendar \n");
-
-        // 2. ask for the number of at bats
-
-        System.out.print("Enter number of times at bat: ");
-
-        //3. get user input
         Scanner scan = new Scanner(System.in);
-        int numAtBats = scan.nextInt();
 
-        System.out.println();
-        //4. using array to store at bat results
+        String choice = "y";
 
-        int[] arr = new int[numAtBats];
-        int [] arr1 = new int [numAtBats];
 
-        System.out.println("0 = out, 1 = single, 2 = double, 3 = triple , 4 = home run");
-        fillArray(scan, arr);
-        fillArray2(scan, arr, arr1);
+        while (choice.equalsIgnoreCase("y")) {
 
-    }
+            System.out.println("Welcome to Batting Average Calendar \n");
 
-    public static void fillArray(Scanner scan, int[] arr) {
+            System.out.print("Enter number of times at bat: ");
 
-        for (int i = 0; i < arr.length; i++) {
+            int numAtBats = scan.nextInt();
 
-            System.out.print("Result for at-bat " + i + " : ");
-            int atBat = scan.nextInt();
-            arr[i] = atBat;
-            
+            while (numAtBats < 0) {
+                System.out.print("Invalid Input. Please try again: ");
+                numAtBats = scan.nextInt();
+            }
+            int[] arr = new int[numAtBats];
+            getResults(scan, arr);
+            getAtBatResults(scan, arr);
 
+            System.out.println();
+
+            System.out.println("Another batter? (y/n) ");
+            choice = scan.nextLine();
         }
     }
 
-    public static void fillArray2(Scanner scan, int [] arr, int [] arr1) {
 
-        DecimalFormat df = new DecimalFormat("#.000");
+    public static void getResults(Scanner scan, int[] arr) {
 
-        double battAverage = 0.0;
-        double slugPercentage = 0.0;
+        double totalBases = 0;
+        for (int i = 0; i < arr.length; i++) {
+            totalBases = totalBases + arr[i];
 
-        System.out.println("Batting Average : " + df.format(battAverage) );
-        System.out.println("Slugging Percentage: "+ df.format(slugPercentage) );
+        }
+
+
+    }
+
+    public static void getAtBatResults(Scanner scan, int[] arr) {
+
+        int numBasesEarned = 0;
+        System.out.println("0 = out, 1 = single, 2 = double, 3 = triple , 4 = home run");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print("Result for at- bat " + i + ": ");
+            numBasesEarned = scan.nextInt();
+
+            while (numBasesEarned > 0 && numBasesEarned > 5) {
+                System.out.println("You entered an invalid number. Please try again: ");
+                numBasesEarned = scan.nextInt();
+            }
+
+        }
+
     }
 }
-
-
-
