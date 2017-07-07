@@ -50,7 +50,7 @@ public class Lab8 {
 
 
             double atBatTotal = 0;
-            double totalSumAtBat = 0;
+            double totalBasesEarned = 0;
             double sluggingPercentage;
             double battingAverage;
 
@@ -64,21 +64,21 @@ public class Lab8 {
             }
             battingAverage = (atBatTotal / numAtBats);
 
-            System.out.printf("Batting Average: " + "%.3f", +battingAverage, "%n");// printing B.A
+            System.out.printf("Batting Average: " + "%.3f", +battingAverage, "%n");// printing B.A- formatted
             System.out.println();
 
             for (int i : arr) // finding slugging percentage
 
             {
                 if (i > 0) {
-                    totalSumAtBat+= i;
+                    totalBasesEarned+= i;
 
                 }
 
             }
 
-            sluggingPercentage = (totalSumAtBat / numAtBats);
-            System.out.printf("Slugging Percentage: " + "%.3f", +sluggingPercentage, "%n");// printing S.P
+            sluggingPercentage = (totalBasesEarned / numAtBats);
+            System.out.printf("Slugging Percentage: " + "%.3f", +sluggingPercentage, "%n");// printing S.P- formatted
 
             System.out.println();
             System.out.println("Another batter? (y/n) "); // asking user to continue
